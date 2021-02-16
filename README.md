@@ -36,3 +36,11 @@ The wrapper for your favourite Wordpress based sites that allows you to view the
 ## Recommended vscode extenstions
 - Eslint
 - VS Code ES7 React/Redux/React-Native/JS snippets
+
+## How to use redux
+-  `import { connect } from 'react-redux';`
+- import your desired action from actions folder
+- create mapStateToProps function where state is 'main redux object' and then access desired parametes by returning an object with them
+- export your component with pattern: `export default connect(mapStateToProps, {<put  your  imported  actions  here>})(<component>);`
+- after this you can call your actions with `this.props.<name of action>`
+- and you can access your imported from redux state parameters with `this.props.<name of parameter>`
