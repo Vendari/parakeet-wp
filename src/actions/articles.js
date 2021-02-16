@@ -12,7 +12,8 @@ export const getCategories = (parentId) => (dispatch, getState) => {
       }
     })
     .then(res => dispatch({type: GET_CATEGORIES, payload: res.data}))
-    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data}}));
+    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data,
+      message: err?.response?.message}}));
 };
 
 export const getArticles = (category_id, tags, page, per_page) => (dispatch, getState) => {
@@ -25,19 +26,22 @@ export const getArticles = (category_id, tags, page, per_page) => (dispatch, get
     }
   })
     .then(res => dispatch({type: GET_ARTICLES, payload: res.data}))
-    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data}}));
+    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data,
+      message: err?.response?.message}}));
 };
 
 export const getTags = () => (dispatch, getState) => {
   axios.get(`${getHost(getState())}/wp-json/wp/v2/tags`)
     .then(res => dispatch({type: GET_TAGS, payload: res.data}))
-    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data}}));
+    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data,
+      message: err?.response?.message}}));
 };
 
 export const getArticle = (id) => (dispatch, getState) => {
   axios.get(`${getHost(getState())}/wp-json/wp/v2/posts/${id}`)
     .then(res => dispatch({type: GET_ARTICLE, payload: res.data}))
-    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data}}));
+    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data,
+      message: err?.response?.message}}));
 };
 
 export const searchArticles = (search, type, page, per_page) => (dispatch, getState) => {
@@ -47,5 +51,6 @@ export const searchArticles = (search, type, page, per_page) => (dispatch, getSt
     }
   })
     .then(res => dispatch({type: SEARCH_CONTENT, payload: res.data}))
-    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data}}));
+    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data,
+      message: err?.response?.message}}));
 };
