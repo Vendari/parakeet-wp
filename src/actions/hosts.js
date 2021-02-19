@@ -16,8 +16,8 @@ export const getHosts = () => async dispatch => {
 };
 
 export const addHost = ({name, url, favourite, notifications}) => async dispatch => {
-  if(!(name && url && favourite && notifications)) {
-    dispatch({type: GET_ERRORS, payload: {hosts: 'Cannot add host. Check if you provided correct parameters',
+  if(name && url && favourite && notifications) {
+    return dispatch({type: GET_ERRORS, payload: {hosts: 'Cannot add host. Check if you provided correct parameters',
       message: 'Error while reading hosts list'}});
   }
   const new_host = {

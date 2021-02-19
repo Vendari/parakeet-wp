@@ -5,3 +5,5 @@ export const third = '#5E5959';
 export const error = '#F72349';
 export const warning = '#FF845E';
 export const info = '#F6DC85';
+
+export const white = '#fefefe';

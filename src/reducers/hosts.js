@@ -10,7 +10,7 @@ export default function (state = initialState, action) {
   case CHECK_HOST:
     return {hostOk: {status: true, date: new Date()}};
   case SET_HOST: 
-    return {actualHost: state.hosts.find(host => host.id===action.payload)};
+    return {...state, actualHost: state.hosts.find(host => host.id===action.payload)};
   default:
     return state;
   }

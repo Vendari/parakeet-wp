@@ -9,7 +9,7 @@ import Article from './src/pages/Article/Article';
 
 // layout components
 import Notification from './src/components/Notification';
-import HomeScreen from './src/pages/HomeScreen';
+import HomeScreen from './src/pages/HomeScreen/HomeScreen';
 
 
 export default function App() {
