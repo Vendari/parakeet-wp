@@ -10,7 +10,7 @@ export default class HomeScreen extends Component {
     // hooks don't work inside classes :(
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Parakeet 🦜 </Text>
+        <Text style={styles.title}>Parakeet {'\n'}🦜</Text>
         <Text style={styles.text}>For all of your favourite Wordpress websites.</Text>
         {/* <TouchableOpacity
           onPress={() => {
@@ -33,19 +33,23 @@ export default class HomeScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
     backgroundColor: primary,
     flex: 1,
     overflow: 'hidden',
-    paddingTop: 30
-
+    paddingTop: 30,
+    width: '100%',
   },
   text: {
-    fontSize: 16,
+    fontSize: 26,
   },
   title: {
     color: third,
-    fontSize: 32,
+    fontSize: 50,
+    fontWeight: 'bold',
     paddingTop: 15,
     textAlign: 'center'
   }
 });
+
+
