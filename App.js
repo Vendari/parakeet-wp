@@ -2,6 +2,10 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './store';
+import { NativeRouter, Route, BackButton } from 'react-router-native';
+
+// pages
+import Article from './src/pages/Article/Article';
 
 // layout components
 import Notification from './src/components/Notification';
@@ -9,9 +13,14 @@ import Notification from './src/components/Notification';
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-      </View>
-      <Notification />
+      <NativeRouter>
+        <View style={styles.container}>
+          <BackButton>
+            <Route path="/article/:id" component={Article} />
+          </BackButton>
+        </View>
+        <Notification />
+      </NativeRouter>
     </Provider>
   );
 }

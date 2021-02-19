@@ -17,7 +17,7 @@ class Notification extends Component {
     this.state = {
       springAnim: new Animated.Value(-height),
       variant: false, // false for error | true for notification
-      content: 'Lorem Tygryskum'
+      content: 'There was an error!'
     };
   }
 
