@@ -5,7 +5,7 @@ import store from './store';
 
 // layout components
 import Notification from './src/components/Notification';
-import HomeScreen from './src/components/HomeScreen';
+import HomeScreen from './src/pages/HomeScreen';
 
 
 export default function App() {
