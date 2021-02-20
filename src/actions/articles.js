@@ -1,7 +1,15 @@
 import {GET_ERRORS, GET_ARTICLES, GET_ARTICLE, GET_CATEGORIES, GET_TAGS, SEARCH_CONTENT} from './types';
-import axios from 'axios';
+import { setup } from 'axios-cache-adapter';
 
-const getHost = (state) => state.hosts.current_host;
+// Create `axios` instance with pre-configured `axios-cache-adapter` attached to it
+const axios = setup({
+  // `axios-cache-adapter` options
+  cache: {
+    maxAge: 15 * 60 * 1000
+  }
+});
+
+const getHost = (state) => state.hosts.actualHost.url;
 
 // parentId is for getting subcategories
 export const getCategories = (parentId) => (dispatch, getState) => {
@@ -12,8 +20,10 @@ export const getCategories = (parentId) => (dispatch, getState) => {
       }
     })
     .then(res => dispatch({type: GET_CATEGORIES, payload: res.data}))
-    .catch(err => dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data,
-      message: err?.response?.message}}));
+    .catch(err => {
+      console.log({...err});
+      dispatch({type: GET_ERRORS, payload: {articles: err?.response?.data,
+        message: err?.response?.message}});});
 };
 
 export const getArticles = (category_id, tags, page, per_page) => (dispatch, getState) => {

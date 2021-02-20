@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, ActivityIndicator, TouchableOpacity, Text, View } from 'react-native';
 import { secondary, warning, primary } from '../../../config/colors';
 import PropTypes from 'prop-types';
+import { FlatList } from 'react-native-gesture-handler';
 
 export default function PagesList({hosts, onDelete, onSelect}) {
   if(hosts===undefined) {
@@ -10,35 +11,38 @@ export default function PagesList({hosts, onDelete, onSelect}) {
     );
   }
   return (
-    <View style={styles.container}>
-      {hosts.map(item =>
-        <View
-          key={item.id}
-          style={styles.page}
-        >
-          <TouchableOpacity            
-            onPress={() => onSelect(item.id)}
+    <FlatList 
+      style={styles.container}
+      data={hosts}
+      renderItem={
+        ({item}) =>
+          <View
+            key={item.id}
+            style={styles.page}
           >
-            <Text style={styles.pageTitle}>
-              {item.name}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity            
-            onPress={() => onDelete(item.id)}
-          >
-            <Text style={styles.deleteButton}>
-            Delete
-            </Text>
-          </TouchableOpacity>
-        </View>)
+            <TouchableOpacity            
+              onPress={() => onSelect(item.id)}
+            >
+              <Text style={styles.pageTitle}>
+                {item.name}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity            
+              onPress={() => onDelete(item.id)}
+            >
+              <Text style={styles.deleteButton}>
+          Delete
+              </Text>
+            </TouchableOpacity>
+          </View>
       }
-    </View>
+      keyExtractor={item => item.id}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
     width: '100%'
   },
   deleteButton: {
@@ -65,4 +69,3 @@ PagesList.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired
 };
-
