@@ -8,6 +8,7 @@ import { NativeRouter, Route, BackButton } from 'react-router-native';
 import Article from './src/pages/Article/Article';
 import HomeScreen from './src/pages/HomeScreen/HomeScreen';
 import CategoriesScreen from './src/pages/CategoriesScreen/CategoriesScreen';
+import ArticlesList from './src/pages/ArticlesList/ArticlesList';
 
 // layout components
 import Notification from './src/components/Notification';
@@ -23,6 +24,7 @@ export default function App() {
             <Route exact path="/" component={HomeScreen} />
             <Route path="/article/:id" component={Article} />
             <Route path="/categories" component={CategoriesScreen} />
+            <Route path='/articles-list/:category' component={ArticlesList} />
           </BackButton>
         </View>
         <Notification />

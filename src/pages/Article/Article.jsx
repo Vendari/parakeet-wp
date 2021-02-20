@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {style} from './wordpress.style.min.css.js';
+import { ScrollView } from 'react-native-gesture-handler';
 
 // lord please forgive me
 const wordpressStyle = `
@@ -24,6 +25,7 @@ const wordpressStyle = `
   body {
     padding: 0%;
     margin: 0%;
+    background-color: transparent;
   }
   img {
     width: 100%;
@@ -58,7 +60,7 @@ export default function Article(props){
   });
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.articleInformation}>
         <Text style={styles.articleTitle}>
           {article?.title?.rendered}
@@ -77,7 +79,8 @@ export default function Article(props){
         useWebKit={true}
         {...autoheightWebshellProps}
       />
-    </View>
+      <View style={styles.footer}/>
+    </ScrollView>
   );
 }
 
@@ -101,13 +104,19 @@ const styles = StyleSheet.create({
   },
   articleTitle: {
     fontSize: 30,
-    width: '75%'
   },
   container: {
-    flex: 1
+    flex: 1,
+    paddingTop: 100,
+    padding: 10,
+    width:  '100%',
+  },
+  footer: {
+    height: 200,
+    width: 50
   },
   webshell: {
-    width:  '100%'
+    width:  '100%',
   }
 });
 

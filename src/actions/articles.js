@@ -9,7 +9,7 @@ const axios = setup({
   }
 });
 
-const getHost = (state) => state.hosts.actualHost.url;
+const getHost = (state) => state.hosts?.actualHost?.url;
 
 // parentId is for getting subcategories
 export const getCategories = (parentId) => (dispatch, getState) => {
@@ -26,7 +26,7 @@ export const getCategories = (parentId) => (dispatch, getState) => {
         message: err?.response?.message}});});
 };
 
-export const getArticles = (category_id, tags, page, per_page) => (dispatch, getState) => {
+export const getArticles = (category_id, tags, page = 1, per_page = 5) => (dispatch, getState) => {
   axios.get(`${getHost(getState())}/wp-json/wp/v2/posts`, {
     params: {
       categories: category_id,
@@ -54,7 +54,7 @@ export const getArticle = (id) => (dispatch, getState) => {
       message: err?.response?.message}}));
 };
 
-export const searchArticles = (search, type, page, per_page) => (dispatch, getState) => {
+export const searchArticles = (search, type, page = 1, per_page = 5) => (dispatch, getState) => {
   axios.get(`${getHost(getState())}/wp-json/wp/v2/search`, {
     params: {
       search, type, page, per_page, subtype: 'post'

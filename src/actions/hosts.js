@@ -62,14 +62,9 @@ export const removeHost = (id) => async dispatch => {
 export const checkHost = (url) => dispatch => {
   axios.get(`${url}/wp-json/wp/v2/`)
     .then(() => dispatch({type: CHECK_HOST, payload: true}))
-    .catch(err => {
-      if(err?.response?.data?.status===401) {
-        dispatch({type: CHECK_HOST, payload: false});
-      }else { 
-        dispatch({type: GET_ERRORS, payload: {hosts: err?.response?.data?.message ||
-       'Error while checking the host',
-        message: 'Error while reading hosts list'}});
-      }
+    .catch(() => {
+      dispatch({type: GET_ERRORS, payload: {hosts: 'Cannoct connect to wordpress site',
+        message: 'Cannoct connect to this host'}});
     }
     );
 };
