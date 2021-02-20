@@ -1,20 +1,23 @@
 import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, Dimensions, Platform} from 'react-native';
+import {StyleSheet, View, Text, Dimensions, Platform} from 'react-native';
 import { withRouter } from 'react-router-native';
 import { Ionicons } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import {primary, secondary} from '../config/colors';
 
 let { width } = Dimensions.get('window');
 
-
 export default withRouter(({location, history}) => 
   <View style={styles.container} >
-    {location.pathname!=='/' && 
+    {(location.pathname!=='/' && Platform.OS === 'ios') && 
           <TouchableOpacity onPress={() => history.goBack()}>
-            <Ionicons style={styles.title} name="arrow-back-circle" size={30} color="black" />
+            <Ionicons style={styles.title} name="arrow-back-circle" size={25} color="black" />
           </TouchableOpacity>}
-    <Text style={styles.title}>Parakeet 🦜</Text>
+    <Text style={styles.title}>Parakeet</Text>
+    <TouchableOpacity onPress={() => history.push('/settings')}>
+      <Ionicons style={styles.title} name="color-palette" size={25} color="black" />
+    </TouchableOpacity>
   </View>
 );
 
@@ -27,11 +30,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     left: 0,
     paddingTop: Platform.OS === 'ios' ? 15 : 20,
-    padding: 10,
+    padding: Platform.OS === 'ios' ? 10 : 0,
     position: 'absolute',
     top: 0,
     width,
-    zIndex: 6,
+    zIndex: 1,
   },
   title: {
     color: primary,

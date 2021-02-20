@@ -9,6 +9,7 @@ import Article from './src/pages/Article/Article';
 import HomeScreen from './src/pages/HomeScreen/HomeScreen';
 import CategoriesScreen from './src/pages/CategoriesScreen/CategoriesScreen';
 import ArticlesList from './src/pages/ArticlesList/ArticlesList';
+import SettingsScreen from './src/pages/SettingsScreen/SettingsScreen';
 
 // layout components
 import Notification from './src/components/Notification';
@@ -25,6 +26,7 @@ export default function App() {
             <Route path="/article/:id" component={Article} />
             <Route path="/categories" component={CategoriesScreen} />
             <Route path='/articles-list/:category' component={ArticlesList} />
+            <Route path='/settings' component={SettingsScreen} />
           </BackButton>
         </View>
         <Notification />
