@@ -28,7 +28,7 @@ function CategoriesList(props){
     return <ActivityIndicator size="large" color={secondary} />;
   }
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, {backgroundColor}]}>
       <FlatList 
         style={[{backgroundColor}]}
         data={categories}

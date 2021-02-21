@@ -6011,6 +6011,11 @@ react-native-gesture-handler@~1.8.0:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
+react-native-hide-with-keyboard@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-hide-with-keyboard/-/react-native-hide-with-keyboard-1.2.1.tgz#9e7b03832e8b2b18e999646dc25686487ce72974"
+  integrity sha512-O3aI0TkfHLaWO3bjO8bDXgOZ/R/K+Ca8CaXOyHJT71eQlyp2CnycUIa/qHUGkXbVpqjt0hZC7k+MUAer82UOaQ==
+
 react-native-safe-area-context@3.1.9:
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.9.tgz#48864ea976b0fa57142a2cc523e1fd3314e7247e"

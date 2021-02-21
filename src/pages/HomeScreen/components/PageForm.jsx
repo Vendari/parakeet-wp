@@ -4,8 +4,8 @@ import { secondary, white } from '../../../config/colors';
 import PropTypes from 'prop-types';
 
 export default function PageForm({onSubmit}) {
-  const [name, setName] = useState('Enter name of website');
-  const [url, setUrl] = useState('Enter URL');
+  const [name, setName] = useState();
+  const [url, setUrl] = useState();
   // TODO: Add some inputs for these variables
   const [favourite] = useState(false);
   const [notifications] = useState(false);
@@ -18,7 +18,8 @@ export default function PageForm({onSubmit}) {
       <TextInput
         style={styles.input}
         onChangeText={text => setName(text)}
-        placeholder={name}
+        value={name}
+        placeholder={'Enter name of website'}
         autoCompleteType={'off'}
       />
 
@@ -26,7 +27,8 @@ export default function PageForm({onSubmit}) {
       <TextInput
         style={styles.input}
         onChangeText={text => setUrl(text)}
-        placeholder={url}
+        value={url}
+        placeholder={'Enter URL'}
         autoCompleteType={'off'}
         autoCorrect={false}
         keyboardType={'url'}
@@ -58,9 +60,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
     elevation: 5,
-    height: 340,
     padding: 10,
     paddingVertical: 40,
+    paddingBottom: 90,
     shadowOffset: { width: 3, height: 10 },
     shadowOpacity: 0.4,
     shadowRadius: 15,  

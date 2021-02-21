@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
     backgroundColor: white,
     flex: 1,
     paddingBottom: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
     paddingTop: 15,
-    width: '100%',
+    width: '95%',
   },
   delete: {
     color: warning
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     borderBottomColor: third,
     borderBottomWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     margin: 5,
     padding: 20,
     width: '100%',

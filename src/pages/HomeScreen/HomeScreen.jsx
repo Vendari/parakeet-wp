@@ -6,6 +6,7 @@ import PagesList from './components/PagesList';
 import PageForm from './components/PageForm';
 import PageHeader from './components/PageHeader';
 import { withRouter } from 'react-router-native';
+import HideWithKeyboard from 'react-native-hide-with-keyboard';
 
 import PropTypes from 'prop-types';
 
@@ -34,15 +35,21 @@ function HomeScreen({history}) {
       <PageForm onSubmit={(page) => {
         dispatch(checkHost(page.url));
         setPageToAdd(page);
-      }}/>
-      <PagesList
-        hosts={hosts}
-        onDelete={(id) => dispatch(removeHost(id))}
-        onSelect={(id) => {
-          dispatch(setHost(id));
-          history.push('/categories');
-        }}
+      }}
+      namePlaceholder={'Enter name of website'}
+      urlPlaceholder={'Enter'}
       />
+      <HideWithKeyboard>
+        <PagesList
+          hosts={hosts}
+          onDelete={(id) => dispatch(removeHost(id))}
+          onSelect={(id) => {
+            dispatch(setHost(id));
+            history.push('/categories');
+          }}
+        />
+      </HideWithKeyboard>
+
     </ScrollView>  
   );
 }
@@ -51,14 +58,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: secondary,
     flex: 1,
-    marginTop: Platform.OS === 'ios' ? 80 : 100,
+    marginTop: Platform.OS === 'ios' ? 80 : 80,
     width: '100%'
   },
   containerLayout: {
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-  },
-
+  }
 });
 
 
