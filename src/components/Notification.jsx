@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    borderRadius: 20,
-    borderWidth: 3,
+    borderRadius: 10,
+    borderWidth: 1,
     elevation: 10,
     flex: 1,
     flexDirection: 'row',

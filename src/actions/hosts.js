@@ -1,4 +1,4 @@
-import { GET_HOSTS, CHECK_HOST, SET_HOST, GET_ERRORS } from './types';
+import { GET_HOSTS, CHECK_HOST, SET_HOST, GET_ERRORS, NOTIFICATION } from './types';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuidv4 from '../utils/uuidv4';
@@ -37,6 +37,7 @@ export const addHost = ({name, url, favourite, notifications}) => async dispatch
     const hosts_to_save_str = JSON.stringify(hosts);
     await AsyncStorage.setItem('hosts', hosts_to_save_str);
     dispatch({type: GET_HOSTS, payload: hosts});
+    dispatch({type: NOTIFICATION, payload: {message: 'Page added'}});
   }
   catch {
     dispatch({type: GET_ERRORS, payload: {hosts: 'Error while saving new host',
@@ -52,6 +53,7 @@ export const removeHost = (id) => async dispatch => {
     const hosts_to_save_str = JSON.stringify(hosts);
     await AsyncStorage.setItem('hosts', hosts_to_save_str);
     dispatch({type: GET_HOSTS, payload: hosts});
+    dispatch({type: NOTIFICATION, payload: {message: 'Page removed'}});
   }
   catch {
     dispatch({type: GET_ERRORS, payload: {hosts: 'Error while saving new host',
@@ -63,8 +65,8 @@ export const checkHost = (url) => dispatch => {
   axios.get(`${url}/wp-json/wp/v2/`)
     .then(() => dispatch({type: CHECK_HOST, payload: true}))
     .catch(() => {
-      dispatch({type: GET_ERRORS, payload: {hosts: 'Cannoct connect to wordpress site',
-        message: 'Cannoct connect to this host'}});
+      dispatch({type: GET_ERRORS, payload: {hosts: 'Cannot connect to wordpress site',
+        message: 'Cannot connect to this host'}});
     }
     );
 };
