@@ -33,10 +33,28 @@ export default function Article(props){
     img, figure, .wp-caption-text, .size-full {
       width: 100%;
       height: auto;
+      text-align: center;
+      margin: 0px;
+      padding: 0px;
     }
     .wp-video, iframe, .wp-video-shortcode .mejs-video {
-      width: 100%; !important
+      width: 100%;
       height: auto;
+      text-align: center;
+      margin: 0px;
+      padding: 0px;
+    }
+    a:link {
+      text-decoration: none;
+      color: ${textColor};
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    a:visited {
+        text-decoration: none;
+        color: ${textColor};
+        font-weight: bold;
+        text-decoration: underline;
     }
   </style>
   </head>
