@@ -5,10 +5,10 @@ import rootReducer from './src/reducers';
 const initialState = {};
 
 // custom redux logger - comment console log to avoid console spam
-const logger = (storeAPI) => next => action => {
-  console.log('dispatching', action);
+const logger = () => next => action => {
+  // console.log('dispatching', action);
   let result = next(action);
-  console.log('next state', storeAPI.getState());
+  // console.log('next state', storeAPI.getState());
   return result;
 };
   

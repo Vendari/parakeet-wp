@@ -19,3 +19,6 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 // Notifications actions
 export const NOTIFICATION = 'NOTIFICATION';
 
+// Colors
+export const SET_BACKGROUND_COLOR = 'SET_BACKGROUND_COLOR';
+export const SET_TEXT_COLOR = 'SET_TEXT_COLOR';
