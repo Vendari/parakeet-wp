@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, ActivityIndicator, SafeAreaView} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../actions/articles';
 import { withRouter } from 'react-router-native';
@@ -28,19 +28,22 @@ function CategoriesList(props){
     return <ActivityIndicator size="large" color={secondary} />;
   }
   return (
-    <FlatList 
-      style={[styles.container, {backgroundColor}]}
-      data={categories}
-      renderItem={
-        ({item}) =>
-          <TouchableOpacity style={styles.articleItem} key={item.id} onPress={() => {
-            props.history.push(`articles-list/${item.id}`);
-          }}>
-            <Text style={[styles.categoryName, {color: textColor, borderColor: textColor}]}>{item.name}</Text>
-          </TouchableOpacity>
-      }
-      keyExtractor={item => item.id.toString()}
-    />
+    <SafeAreaView style={styles.container}>
+      <FlatList 
+        style={[{backgroundColor}]}
+        data={categories}
+        contentContainerStyle={styles.containerLayout}
+        renderItem={
+          ({item}) =>
+            <TouchableOpacity style={styles.articleItem} key={item.id} onPress={() => {
+              props.history.push(`articles-list/${item.id}`);
+            }}>
+              <Text style={[styles.categoryName, {color: textColor, borderColor: textColor}]}>{item.name}</Text>
+            </TouchableOpacity>
+        }
+        keyExtractor={item => item.id.toString()}
+      />
+    </SafeAreaView>
   );
 }
 
@@ -49,19 +52,23 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: third,
     margin: 20,
-    width: '95%'
   },
   categoryName: {
     color: third,
     fontSize: 20,
     fontWeight: 'bold',
-    letterSpacing: 2,
-    textAlignVertical: 'center'
+    letterSpacing: 1.4,
+    paddingBottom: 10,
+    textAlignVertical: 'center',
   },
   container: {
     flex: 1,
     marginTop: 80,
+    paddingHorizontal: 10,
     width: '100%'
+  },
+  containerLayout: {
+    justifyContent: 'center'
   }
 });
 

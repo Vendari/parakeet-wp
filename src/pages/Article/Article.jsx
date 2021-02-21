@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
-import {StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,13 +9,13 @@ import {style} from './wordpress.style.min.css.js';
 
 
 export default function Article(props){
-
   const backgroundColor = useSelector(state =>
     state.colors.backgroundColor);
   const textColor = useSelector(state =>
     state.colors.textColor);
 
   // lord please forgive me
+  // what is this abomination
   const wordpressStyle = `
   <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -24,8 +24,8 @@ export default function Article(props){
     </style>
     <style>
     body {
-      padding: 0%;
-      margin: 0%;
+      padding: 0;
+      margin: 0;
       width: 100%;
       background-color: ${backgroundColor};
       color: ${textColor};

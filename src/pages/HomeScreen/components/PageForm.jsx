@@ -1,29 +1,35 @@
 import React, {useState} from 'react';
-import { StyleSheet, TouchableOpacity, Text, TextInput, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { secondary, white } from '../../../config/colors';
 import PropTypes from 'prop-types';
 
 export default function PageForm({onSubmit}) {
-  const [name, setName] = useState('Give this page a name');
-  const [url, setUrl] = useState('Enter the URL');
+  const [name, setName] = useState('Enter name of website');
+  const [url, setUrl] = useState('Enter URL');
   // TODO: Add some inputs for these variables
   const [favourite] = useState(false);
   const [notifications] = useState(false);
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <Text style={styles.label}>Give this website a custom name:</Text>
+        
       <TextInput
         style={styles.input}
         onChangeText={text => setName(text)}
-        value={name}
+        placeholder={name}
+        autoCompleteType={'off'}
       />
 
       <Text style={styles.label}>Enter the URL of the website:</Text>
       <TextInput
         style={styles.input}
         onChangeText={text => setUrl(text)}
-        value={url}
+        placeholder={url}
+        autoCompleteType={'off'}
+        autoCorrect={false}
+        keyboardType={'url'}
       />
       <TouchableOpacity
         onPress={() => onSubmit({name, url, favourite, notifications})}
@@ -31,7 +37,7 @@ export default function PageForm({onSubmit}) {
       >
         <Text style={styles.text}>Add your page</Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -48,23 +54,34 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 10,
+    backgroundColor: white,
+    borderTopLeftRadius: 45,
+    borderTopRightRadius: 45,
+    elevation: 5,
+    height: 340,
+    padding: 10,
+    paddingVertical: 40,
+    shadowOffset: { width: 3, height: 10 },
+    shadowOpacity: 0.4,
+    shadowRadius: 15,  
     width: '100%'
   },
   input: {
     borderColor: secondary,
     borderRadius: 50,
-    borderWidth: 1,
-    margin: 10,
-    padding: 15,
+    borderWidth: 2,
+    margin: 5,
+    marginBottom: 30,
+    paddingHorizontal: 25,
+    paddingVertical: 15,
     width: '85%'
   },
   label: {
     alignSelf: 'baseline',
     color: secondary,
-    marginHorizontal: 40
+    fontWeight: 'bold',
+    marginHorizontal: 40,
+    margin: 0
   },
   text: {
     color: white,

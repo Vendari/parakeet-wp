@@ -188,10 +188,12 @@ const styles = StyleSheet.create({
   },
   filterBtn: {
     alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor: primary,
     borderRadius: 25,
     margin: 20,
-    padding: 20,
+    padding: 10,
+    width: '50%'
   },
   searchTagBtn: {
     backgroundColor: secondary,

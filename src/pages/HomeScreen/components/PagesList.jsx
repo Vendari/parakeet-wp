@@ -1,66 +1,104 @@
 import React from 'react';
 import { StyleSheet, ActivityIndicator, TouchableOpacity, Text, View } from 'react-native';
-import { secondary, warning, primary } from '../../../config/colors';
+import { secondary, warning, white, third } from '../../../config/colors';
+import { Ionicons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { FlatList } from 'react-native-gesture-handler';
 
 export default function PagesList({hosts, onDelete, onSelect}) {
-  if(hosts===undefined) {
+  if(hosts===undefined || hosts.length == 0) {
     return (
       <ActivityIndicator size="large" color={secondary} />
     );
   }
   return (
-    <FlatList 
-      style={styles.container}
-      data={hosts}
-      renderItem={
-        ({item}) =>
-          <View
-            key={item.id}
-            style={styles.page}
-          >
-            <TouchableOpacity            
-              onPress={() => onSelect(item.id)}
+    <View style={styles.container}>
+      <Text style={styles.title}>Your collection:</Text>
+      <FlatList 
+        style={styles.container}
+        data={hosts}
+        renderItem={
+          ({item}) =>
+            <View
+              key={item.id}
+              style={styles.page}
             >
-              <Text style={styles.pageTitle}>
-                {item.name}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity            
-              onPress={() => onDelete(item.id)}
-            >
-              <Text style={styles.deleteButton}>
-          Delete
-              </Text>
-            </TouchableOpacity>
-          </View>
-      }
-      keyExtractor={item => item.id}
-    />
+              <TouchableOpacity            
+                onPress={() => onSelect(item.id)}
+              >
+                <Text style={styles.pageTitle}>
+                  {item.name}
+                </Text>
+                <Text style={styles.pageURL}>
+                  {item.url.toLowerCase()}
+                </Text>
+              </TouchableOpacity>
+              <View style={styles.iconContainer}>
+                {/* <TouchableOpacity>
+                  <Ionicons name={'star'} style={[styles.icon, styles.star]} />
+                </TouchableOpacity> */}
+                <TouchableOpacity            
+                  onPress={() => onDelete(item.id)}
+                >
+                  <Ionicons name={'trash'} style={[styles.icon, styles.delete]} />
+                </TouchableOpacity>
+              </View>
+            </View>
+        }
+        keyExtractor={item => item.id}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%'
+    backgroundColor: white,
+    flex: 1,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
+    paddingTop: 15,
+    width: '100%',
   },
-  deleteButton: {
-    backgroundColor: warning,
+  delete: {
+    color: warning
+  },
+  icon: {
+    fontSize: 24,
     padding: 10
+  },
+  iconContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginLeft: 20
   },
   page: {
-    backgroundColor: secondary,
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderBottomColor: third,
+    borderBottomWidth: 1,
     flexDirection: 'row',
-    flex: 1,
     justifyContent: 'space-between',
     margin: 5,
-    padding: 20
+    padding: 20,
+    width: '100%',
   },
   pageTitle: {
-    backgroundColor: primary,
-    fontSize: 20,
-    padding: 10
+    fontSize: 24,
+  },
+  pageURL: {
+    color: third,
+    fontSize: 16
+  },
+  // star: {
+  //   color: gold,
+  //   fontSize: 32
+  // },
+  title: {
+    color: secondary,
+    fontSize: 32,
+    fontWeight: 'bold' 
   }
 });
 

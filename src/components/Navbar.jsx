@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import {primary, secondary} from '../config/colors';
+import { secondary, white } from '../config/colors';
 
 let { width } = Dimensions.get('window');
 
@@ -17,7 +17,7 @@ export default withRouter(({location, history}) =>
     <Text style={styles.title}>Parakeet</Text>
     <Image />
     <TouchableOpacity onPress={() => { if (location.pathname!=='/settings') history.push('/settings');}}>
-      <Ionicons style={styles.title} name="color-palette" size={25} color="black" />
+      <Ionicons style={styles.title} name="color-palette-outline" size={25} color="black" />
     </TouchableOpacity>
   </View>
 );
@@ -27,10 +27,9 @@ const styles = StyleSheet.create({
     backgroundColor: secondary,
     elevation: 1,
     flexDirection: 'row',
-    height: 80,
     justifyContent: 'space-around',
     left: 0,
-    paddingTop: Platform.OS === 'ios' ? 30 : 20,
+    paddingTop: Platform.OS === 'ios' ? 40 : 20,
     padding: Platform.OS === 'ios' ? 10 : 0,
     position: 'absolute',
     top: 0,
@@ -38,10 +37,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   title: {
-    color: primary,
-    fontSize: 25,
+    color: white,
+    fontSize: 30,
     fontWeight: 'bold',
-    padding: 15,
-    textAlign: 'center'
-  },
+  }
 });

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Platform } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { getHosts, addHost, removeHost, checkHost, setHost } from '../../actions/hosts';
 import PagesList from './components/PagesList';
 import PageForm from './components/PageForm';
+import PageHeader from './components/PageHeader';
 import { withRouter } from 'react-router-native';
 
 import PropTypes from 'prop-types';
 
-import { white } from '../../config/colors';
+import { secondary } from '../../config/colors';
+import { ScrollView } from 'react-native-gesture-handler';
 
 function HomeScreen({history}) {
   const [pageToAdd, setPageToAdd] = useState({name: '', url: '', favourite: false, notifications: false});
@@ -27,32 +29,36 @@ function HomeScreen({history}) {
   }, [getHosts, hostOk]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.containerLayout} style={styles.container}>
+      <PageHeader />
       <PageForm onSubmit={(page) => {
         dispatch(checkHost(page.url));
         setPageToAdd(page);
       }}/>
       <PagesList
-        hosts={hosts} 
+        hosts={hosts}
         onDelete={(id) => dispatch(removeHost(id))}
         onSelect={(id) => {
           dispatch(setHost(id));
           history.push('/categories');
         }}
       />
-    </View>      
+    </ScrollView>  
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'flex-start',
-    backgroundColor: white,
+    backgroundColor: secondary,
     flex: 1,
-    justifyContent: 'flex-start',
-    marginTop: Platform.OS === 'ios' ? 95 : 100,
-    width: '100%',
+    marginTop: Platform.OS === 'ios' ? 80 : 100,
+    width: '100%'
   },
+  containerLayout: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+  },
+
 });
 
 
