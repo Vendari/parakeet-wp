@@ -3,7 +3,6 @@ import { StyleSheet, ActivityIndicator, TouchableOpacity, Text, View } from 'rea
 import { secondary, warning, white, third } from '../../../config/colors';
 import { Ionicons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
-import { FlatList } from 'react-native-gesture-handler';
 
 export default function PagesList({hosts, onDelete, onSelect}) {
   if(hosts===undefined || hosts.length == 0) {
@@ -14,39 +13,33 @@ export default function PagesList({hosts, onDelete, onSelect}) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Your collection:</Text>
-      <FlatList 
-        style={styles.container}
-        data={hosts}
-        renderItem={
-          ({item}) =>
-            <View
-              key={item.id}
-              style={styles.page}
-            >
-              <TouchableOpacity            
-                onPress={() => onSelect(item.id)}
-              >
-                <Text style={styles.pageTitle}>
-                  {item.name}
-                </Text>
-                <Text style={styles.pageURL}>
-                  {item.url.toLowerCase()}
-                </Text>
-              </TouchableOpacity>
-              <View style={styles.iconContainer}>
-                {/* <TouchableOpacity>
+      {hosts.map(item => 
+        <View
+          key={item.id}
+          style={styles.page}
+        >
+          <TouchableOpacity            
+            onPress={() => onSelect(item.id)}
+          >
+            <Text style={styles.pageTitle}>
+              {item.name}
+            </Text>
+            <Text style={styles.pageURL}>
+              {item.url.toLowerCase()}
+            </Text>
+          </TouchableOpacity>
+          <View style={styles.iconContainer}>
+            {/* <TouchableOpacity>
                   <Ionicons name={'star'} style={[styles.icon, styles.star]} />
                 </TouchableOpacity> */}
-                <TouchableOpacity            
-                  onPress={() => onDelete(item.id)}
-                >
-                  <Ionicons name={'trash'} style={[styles.icon, styles.delete]} />
-                </TouchableOpacity>
-              </View>
-            </View>
-        }
-        keyExtractor={item => item.id}
-      />
+            <TouchableOpacity            
+              onPress={() => onDelete(item.id)}
+            >
+              <Ionicons name={'trash'} style={[styles.icon, styles.delete]} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </View>
   );
 }

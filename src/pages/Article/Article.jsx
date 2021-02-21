@@ -29,6 +29,7 @@ export default function Article(props){
       width: 100%;
       background-color: ${backgroundColor};
       color: ${textColor};
+      font-family:Helvetica,arial,courier;
     }
     img, figure, .wp-caption-text, .size-full {
       width: 100%;
