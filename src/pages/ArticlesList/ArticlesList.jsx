@@ -33,9 +33,9 @@ class ArticlesList extends Component {
   }
 
   render() {
-    const {articles, all_tags} = this.props;
+    const {articles, all_tags, backgroundColor, textColor} = this.props;
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView style={[styles.container, {backgroundColor}]}>
         <TouchableOpacity
           onPress={() => this.setState({showFilters: !this.state.showFilters})} style={styles.filterBtn}>
           <Ionicons color="black" size={25} name="options"/>
@@ -91,15 +91,18 @@ class ArticlesList extends Component {
               this.props.history.push(`/article/${article.id}`);
             }}>
               <View style={styles.article}>
-                <Text style={styles.date}>{article.date.substring(0, 10)}</Text>
-                <Text style={styles.articleTitle}>{article.title.rendered}</Text>
+                <Text style={[styles.articleTitle, {color: textColor}]}>{article.title.rendered}</Text>
+                <Text style={[styles.date, {color: textColor}]}>{article.date.substring(0, 10)}</Text>
                 <View style={styles.tags}>
                   {all_tags?.find((tag) => tag.id===article.tags[0])?.name &&
-                  <Text style={styles.tagText}> | {all_tags?.find((tag) =>tag.id===article.tags[0])?.name || ''}</Text>}
+                  <Text style={[styles.tagText, {color: textColor}]}>
+                     | {all_tags?.find((tag) =>tag.id===article.tags[0])?.name || ''}</Text>}
                   {all_tags?.find((tag) => tag.id===article.tags[1])?.name &&
-                  <Text style={styles.tagText}> | {all_tags?.find((tag) =>tag.id===article.tags[1])?.name || ''}</Text>}
+                  <Text style={[styles.tagText, {color: textColor}]}>
+                     | {all_tags?.find((tag) =>tag.id===article.tags[1])?.name || ''}</Text>}
                   {all_tags?.find((tag) => tag.id===article.tags[2])?.name &&
-                  <Text style={styles.tagText}> | {all_tags?.find((tag) =>tag.id===article.tags[2])?.name || ''}</Text>}
+                  <Text style={[styles.tagText, {color: textColor}]}>
+                     | {all_tags?.find((tag) =>tag.id===article.tags[2])?.name || ''}</Text>}
                 </View>
               </View>
               {/* https://stackoverflow.com/questions/5002111/how-to-strip-html-tags-from-string-in-javascript */}
@@ -147,8 +150,10 @@ const styles = StyleSheet.create({
   },
   article: {
     alignSelf: 'flex-start',
+    borderBottomWidth: 1,
+    borderColor: third,
     flex: 1,
-    maxWidth: '99%'
+    width: '99%',
   },
   articleItem: {
     borderRadius: 8,
@@ -174,7 +179,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 100
+    marginTop: 80,
+    width: '100%'
   },
   date: {
     // color: highlightPhotoCaption,
@@ -217,6 +223,8 @@ ArticlesList.propTypes = {
   all_tags: PropTypes.array,
   getArticles: PropTypes.func.isRequired,
   getTags: PropTypes.func.isRequired,
+  backgroundColor: PropTypes.string.isRequired,
+  textColor: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -224,7 +232,9 @@ const mapStateToProps = state => ({
   notification: state.notification,
   articles: state.articles.articles,
   articles_tags: state.articles.articles_tags,
-  all_tags: state.articles.tags
+  all_tags: state.articles.tags,
+  backgroundColor: state.colors.backgroundColor,
+  textColor: state.colors.textColor,
 });
 
 export default compose(
