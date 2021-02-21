@@ -15,7 +15,7 @@ export default withRouter(({location, history}) =>
             <Ionicons style={styles.title} name="arrow-back-circle" size={25} color="black" />
           </TouchableOpacity>}
     <Text style={styles.title}>Parakeet</Text>
-    <TouchableOpacity onPress={() => history.push('/settings')}>
+    <TouchableOpacity onPress={() => { if (location.pathname!=='/settings') history.push('/settings');}}>
       <Ionicons style={styles.title} name="color-palette" size={25} color="black" />
     </TouchableOpacity>
   </View>

@@ -17,9 +17,9 @@ export default function SettingsScreen() {
     state.colors.textColor);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor}]}>
       <View style={styles.section}>
-        <Text style={styles.title}>Background Color</Text>
+        <Text style={[styles.title, {color: textColor}]}>Background Color</Text>
         <ColorPicker
           onColorChange={color => dispatch(setBackgroundColor(fromHsv(color)))}
           style={styles.colorPicker}
@@ -27,7 +27,7 @@ export default function SettingsScreen() {
         />
       </View>
       <View style={styles.section}>
-        <Text style={styles.title}>Text Color</Text>
+        <Text style={[styles.title, {color: textColor}]}>Text Color</Text>
         <ColorPicker
           onColorChange={color => dispatch(setTextColor(fromHsv(color)))}
           style={styles.colorPicker}
