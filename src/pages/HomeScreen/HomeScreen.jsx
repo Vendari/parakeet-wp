@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-native';
 
 import PropTypes from 'prop-types';
 
-import { white} from '../../config/colors';
+import { white } from '../../config/colors';
 
 function HomeScreen({history}) {
   const [pageToAdd, setPageToAdd] = useState({name: '', url: '', favourite: false, notifications: false});

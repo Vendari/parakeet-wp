@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, Dimensions, Platform} from 'react-native';
+import {StyleSheet, View, Text, Image, Dimensions, Platform} from 'react-native';
 import { withRouter } from 'react-router-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -15,6 +15,7 @@ export default withRouter(({location, history}) =>
             <Ionicons style={styles.title} name="arrow-back-circle" size={25} color="black" />
           </TouchableOpacity>}
     <Text style={styles.title}>Parakeet</Text>
+    <Image />
     <TouchableOpacity onPress={() => { if (location.pathname!=='/settings') history.push('/settings');}}>
       <Ionicons style={styles.title} name="color-palette" size={25} color="black" />
     </TouchableOpacity>
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     height: 80,
     justifyContent: 'space-around',
     left: 0,
-    paddingTop: Platform.OS === 'ios' ? 15 : 20,
+    paddingTop: Platform.OS === 'ios' ? 30 : 20,
     padding: Platform.OS === 'ios' ? 10 : 0,
     position: 'absolute',
     top: 0,
